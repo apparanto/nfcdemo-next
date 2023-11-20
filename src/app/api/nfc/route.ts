@@ -12,5 +12,5 @@ export async function POST(request: Request) {
     console.log(response);
     return new Response(response, { status: 200 });
   }
-  return new Response("FAILED", { status: 500 });
+  return new Response("FAILED", { status: 400 });
 }
