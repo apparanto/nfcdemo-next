@@ -1,6 +1,4 @@
-import mongoose from 'mongoose';
-
-export interface Visitors extends mongoose.Document {
+type IpData = {
   ipAddress: string,
   ipVersion: number,
   latitude: number,
@@ -13,6 +11,4 @@ export interface Visitors extends mongoose.Document {
   regionName: string,
   continent: string,
   continentCode: string,
-  firstVisit: Date,
-  lastVisit: Date
 }

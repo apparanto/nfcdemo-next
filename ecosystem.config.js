@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      script: "bun run dev",
+      script: "yarn start",
       name: "nfcdemo-next",
     },
   ],
