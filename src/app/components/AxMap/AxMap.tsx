@@ -9,7 +9,7 @@ type Props = {
 
 export const AxMap = ({ lat, long }: Props) => {
   return (
-    <MapContainer center={[lat, long]} zoom={13} scrollWheelZoom={false}>
+    <MapContainer center={[lat, long]} zoom={13} scrollWheelZoom={false} className='flex-auto w-full'>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -22,3 +22,5 @@ export const AxMap = ({ lat, long }: Props) => {
     </MapContainer>
   )
 }
+
+export default AxMap;
