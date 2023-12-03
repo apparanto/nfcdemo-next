@@ -22,3 +22,4 @@ const TagReadSchema = new mongoose.Schema({
 
 export default mongoose.models.TagRead ||
   mongoose.model<TagReads>("TagRead", TagReadSchema);
+
