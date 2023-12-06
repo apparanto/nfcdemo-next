@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "NFC Demo App",
+  title: "NextJS Demo App by apparanto.com",
   description: "Developed by @apparanto.com",
 };
 
