@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export interface Visitors extends mongoose.Document {
+export interface IVisitor extends mongoose.Document {
   ipAddress: string,
   ipVersion: number | null,
   latitude: number | null,
@@ -36,5 +36,7 @@ const VisitorSchema = new mongoose.Schema({
   visitCount: { type: Number, required: true }
 });
 
+
 export default mongoose.models.Visitor ||
-  mongoose.model<Visitors>("Visitor", VisitorSchema);
+  mongoose.model<IVisitor>("Visitor", VisitorSchema);
+
