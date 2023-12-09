@@ -1,10 +1,10 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
   if (request.nextUrl.pathname === "/") return;
   const realIp = request.headers.get('X-Real-IP');
-  console.log(realIp)
   console.log("middleware", realIp, request.nextUrl.pathname);
+  return NextResponse.rewrite(new URL('/', request.url));
 }
 
 export const config = {
