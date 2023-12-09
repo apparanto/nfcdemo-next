@@ -2,9 +2,9 @@ import { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
   if (request.nextUrl.pathname === "/") return;
-  console.log("middleware", request.nextUrl.pathname);
   const realIp = request.headers.get('X-Real-IP');
   console.log(realIp)
+  console.log("middleware", realIp, request.nextUrl.pathname);
 }
 
 export const config = {
