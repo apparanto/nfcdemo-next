@@ -38,7 +38,7 @@ export const AxMap = ({ v }: Props) => {
         visitors.map((v, i) => (
           <CircleMarker key={i} center={[v.latitude!, v.longitude!]} radius={10}>
             <Tooltip>
-              {v.visitCount} visits
+              {v.cityName}, {v.countryCode}: {v.visitCount} visit{v.visitCount > 1 ? 's' : ''}
             </Tooltip>
           </CircleMarker>
         ))

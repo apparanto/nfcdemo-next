@@ -1,9 +1,6 @@
 import dbConnect from "@/lib/mongodb/mongoose";
-import { IVisitor } from "@/models/visitor/Visitor";
 import Visitor from "@/models/visitor/Visitor";
 import { NextResponse } from "next/server";
-
-const select = { latitude: 1, longitude: 1, lastVisit: 1, visitCount: 1, _id: 0 };
 
 export async function GET() {
   await dbConnect();
