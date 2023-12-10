@@ -3,6 +3,8 @@ import { IVisitor } from "@/models/visitor/Visitor";
 import Visitor from "@/models/visitor/Visitor";
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 const select = {
   latitude: 1, longitude: 1, lastVisit: 1, visitCount: 1, _id: 1, cityName: 1, countryCode: 1
 };

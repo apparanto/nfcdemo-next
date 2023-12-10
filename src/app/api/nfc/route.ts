@@ -2,6 +2,8 @@ import TagRead from "@/models/nfc/TagRead";
 import UFR from "@/lib/nfc/ufr";
 import dbConnect from "@/lib/mongodb/mongoose";
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: Request) {
   const data: Tag = await request.json();
   const timestamp: Date = new Date();
