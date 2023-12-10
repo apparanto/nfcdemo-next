@@ -2,10 +2,14 @@ import { headers } from 'next/headers';
 import dynamic from 'next/dynamic';
 import getVisitor from '@/lib/visitor/getVisitor';
 import { IVisitor } from '@/models/visitor/Visitor';
+import { getCount } from '@/lib/visitor/getCount';
 
 const AxMap = dynamic(
   () => import('./components/AxMap').then((mod) => mod.default),
-  { ssr: false }
+  {
+    ssr: false,
+    loading: () => <p>Loading...</p>
+  }
 );
 
 export default async function Home() {
@@ -28,7 +32,7 @@ export default async function Home() {
         ) : <></>
       }
       <div>
-        <span className="text-xs">I see you {v ? `in ${v.cityName}, ${v.countryName} ` : ''}</span>
+        <span className="text-xs">{getCount()} visitors</span>
       </div>
     </main>
   );
