@@ -14,9 +14,9 @@ const AxMap = dynamic(
 
 export default async function Home() {
   const realIp = headers().get('X-Real-IP') || process.env.NEXT_PUBLIC_IP_ADDRESS;
-  console.log('realIp', realIp);
   const v: IVisitor | null = realIp ? await getVisitor(realIp as string) : null;
-  const v2 = { latitude: v?.latitude, longitude: v?.longitude, visitCount: v?.visitCount } as IVisitor;
+  const v2 = { latitude: v?.latitude, longitude: v?.longitude, visitCount: v?.visitCount, countryName: v?.countryName, cityName: v?.cityName } as IVisitor;
+  console.log({ realIp, ...v2, timeStamp: new Date() });
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-8 lg:p-24">
