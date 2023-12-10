@@ -17,7 +17,6 @@ export const AxMap = ({ v }: Props) => {
     fetch('/api/visitor/latest')
       .then(res => res.json())
       .then((data: IVisitor[]) => {
-        console.log(data)
         setVisitors(data);
       })
       .catch(console.error);
