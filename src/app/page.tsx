@@ -12,12 +12,13 @@ const AxMap = dynamic(
   }
 );
 
+
 export default async function Home() {
   const realIp = headers().get('X-Real-IP') || process.env.NEXT_PUBLIC_IP_ADDRESS;
   const v: IVisitor | null = realIp ? await getVisitor(realIp as string) : null;
   const v2 = { latitude: v?.latitude, longitude: v?.longitude, visitCount: v?.visitCount, countryName: v?.countryName, cityName: v?.cityName } as IVisitor;
   console.log({ realIp, ...v2, timeStamp: new Date() });
-
+  const count = await getCount();
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-8 lg:p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
@@ -26,13 +27,9 @@ export default async function Home() {
           <a href="#" className="hover:underline">Soon</a>...
         </div>
       </div>
-      {
-        v ? (
-          <AxMap v={v2} />
-        ) : <></>
-      }
+      <AxMap v={v2} />
       <div>
-        <span className="text-xs">{getCount()} visitors</span>
+        <span className="text-xs">{count} visitors</span>
       </div>
     </main>
   );

@@ -10,10 +10,12 @@ type Props = {
 }
 
 export const AxMap = ({ v }: Props) => {
+  const [isClient, setIsClient] = React.useState(false);
   const [visitors, setVisitors] = React.useState<IVisitor[]>([]);
   const mapRef = React.createRef<Map>();
 
   useEffect(() => {
+    setIsClient(true);
     fetch('/api/visitor/latest')
       .then(res => res.json())
       .then((data: IVisitor[]) => {
@@ -37,7 +39,7 @@ export const AxMap = ({ v }: Props) => {
         visitors.map((v, i) => (
           <CircleMarker key={i} center={[v.latitude!, v.longitude!]} radius={10}>
             <Tooltip>
-              {v.cityName}, {v.countryCode}: {v.visitCount} visit{v.visitCount > 1 ? 's' : ''}
+              {v._id.city}, {v._id.country}: {v.visitCount} visit{v.visitCount > 1 ? 's' : ''}
             </Tooltip>
           </CircleMarker>
         ))

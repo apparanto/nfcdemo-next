@@ -1,12 +1,30 @@
-import { IVisitor } from "@/models/visitor/Visitor";
+import Visitor, { IVisitor } from "@/models/visitor/Visitor";
+import dbConnect from "../mongodb/mongoose";
 
-const limit = parseInt(process.env.VISTOR_LATEST_LIMIT || '200');
+export async function getLatest(limit: number,
+  select: Record<string, number | boolean | object>): Promise<IVisitor[]> {
+  dbConnect();
+  const visitors: IVisitor[] =
+    await Visitor.find()
+      .sort({ lastVisit: -1 } as any)
+      .select(select)
+      .limit(limit).exec();
+  return visitors;
+}
 
-const select = {
-  latitude: 1, longitude: 1, lastVisit: 1, visitCount: 1, _id: 1, cityName: 1, countryCode: 1
-};
-
-export async function getLatest(): Promise<IVisitor[]> {
-  const visitors: IVisitor[] = await getLatest();
+export async function getLatestByCity() {
+  dbConnect();
+  const visitors: IVisitor[] = await Visitor.aggregate([
+    {
+      $group: {
+        _id: { city: "$cityName", country: "$countryName" },
+        visitCount: { $sum: "$visitCount" },
+        latitude: { $avg: "$latitude" },
+        longitude: { $avg: "$longitude" }
+      }
+    },
+    { $sort: { count: -1 } },
+    { $limit: 100 }
+  ]);
   return visitors;
 }
