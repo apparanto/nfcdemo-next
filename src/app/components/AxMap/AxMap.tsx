@@ -25,7 +25,7 @@ export const AxMap = ({ v }: Props) => {
   }, []);
 
   return (
-    <MapContainer ref={mapRef} center={[v.latitude!, v.longitude!]} zoom={5} scrollWheelZoom={true} className='flex-auto w-full'>
+    <MapContainer ref={mapRef} center={[40, 0]} zoom={1.8} scrollWheelZoom={true} className='flex-auto w-full'>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
