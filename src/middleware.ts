@@ -3,7 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 export function middleware(request: NextRequest) {
   if (request.nextUrl.pathname === "/") return;
   const realIp = request.headers.get('X-Real-IP');
-  console.log("middleware", realIp, request.nextUrl.pathname);
+  const forwardedFor = request.headers.get('X-Forwarded-For');
+  console.log("middleware", realIp, forwardedFor, request.nextUrl.pathname);
   return NextResponse.rewrite(new URL('/', request.url));
 }
 
